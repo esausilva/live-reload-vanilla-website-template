@@ -1,0 +1,45 @@
+@import 'reset.scss';
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  line-height: 23px;
+
+  & > * {
+    grid-column: 2 / -2;
+  }
+
+  header {
+    grid-column: 1 / -1;
+    // Photo by Karsten Würth (@inf1783) on Unsplash
+    background: #fdbc9a url('../../public/assets/images/venice-italy.jpg')
+      no-repeat center;
+    background-size: cover;
+    height: 500px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+
+    h1 {
+      font-size: 3.5em;
+      text-shadow: -2px -2px 3px rgb(163, 162, 162);
+    }
+  }
+
+  footer {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.bacon > img {
+  width: 75px;
+  display: block;
+  margin: auto;
+}
