@@ -24,9 +24,9 @@ yarn
 yarn dev
 ```
 
-Will open your default browser to http://localhost:8080/public and output the bundled assets to `./public/assets`.
+Will open your default browser to http://localhost:8080/public.
 
-It watches for changes under the `./src` directory and live reload your browser.
+Webpack will watch for changes in the `./src` directory and output the bundled assets to `./public/assets`. In parellel, the development server will watch for changes in the `./public` directory and live reload the browser.
 
 - Build production bundles
 
