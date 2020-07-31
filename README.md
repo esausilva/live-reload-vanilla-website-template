@@ -40,7 +40,7 @@ After building for production you can take the `./public` directory and deploy i
 
 ## Tutorial
 
-Visit my [blog entry](https://blog.bitsrc.io/build-a-website-with-modern-tooling-and-no-frameworks-a33e65099f9) where I go step-by-step on how to build this template from scratch.
+Visit my [blog entry](https://esausilva.com/2018/09/17/build-a-website-with-modern-tooling-and-no-frameworks/) where I go step-by-step on how to build this template from scratch.
 
 ## Giving Back
 
