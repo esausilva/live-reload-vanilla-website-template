@@ -26,7 +26,7 @@ module.exports = {
 
     // The name of the output bundle. Path is also relative
     // to the output path
-    filename: 'assets/scripts/bundle.js'
+    filename: 'assets/scripts/bundle.js',
   },
   module: {
     // Array of rules that tells Webpack how the modules (output)
@@ -38,7 +38,7 @@ module.exports = {
         // configuration in `.babelrc`
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         // Look for Sass files and process them according to the
@@ -51,26 +51,48 @@ module.exports = {
           {
             // Extracts the CSS into a separate file and uses the
             // defined configurations in the 'plugins' section
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             // Interprets CSS
             loader: 'css-loader',
             options: {
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
-            // Use PostCSS to minify and autoprefix. This loader
-            // uses the configuration in `postcss.config.js`
-            loader: 'postcss-loader'
+            // Use PostCSS to minify and autoprefix with vendor rules
+            // for older browser compatibility
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                // We instruct PostCSS to use postcss-preset-env
+                // when in production mode, otherwise do nothing
+                plugins: devMode
+                  ? []
+                  : [
+                      [
+                        'postcss-preset-env',
+                        {
+                          // Compile our CSS code to support browsers
+                          // that are used in more than 1% of the
+                          // global market browser share. You can modify
+                          // the target browsers according to your needs
+                          // by using supported queries.
+                          // https://github.com/browserslist/browserslist#queries
+                          browsers: ['>1%'],
+                        },
+                      ],
+                    ],
+              },
+            },
           },
           {
             // Adds support for Sass files, if using Less, then
             // use the less-loader
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         // Adds support to load images in your CSS rules. It looks for
@@ -95,19 +117,19 @@ module.exports = {
 
               // When this option is 'true', the loader will emit the
               // image to output.path
-              emitFile: false
-            }
-          }
-        ]
-      }
-    ]
+              emitFile: false,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     // Configuration options for MiniCssExtractPlugin. Here I'm only
     // indicating what the CSS outputted file name should be and
     // the location
     new MiniCssExtractPlugin({
-      filename: 'assets/styles/main.css'
-    })
-  ]
+      filename: 'assets/styles/main.css',
+    }),
+  ],
 };
