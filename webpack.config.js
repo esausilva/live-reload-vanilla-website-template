@@ -19,14 +19,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
 
-    // Specify the base path for all the assets within your
-    // application. This is relative to the output path, so in
-    // our case it will be ./public/assets
-    publicPath: '/assets',
-
     // The name of the output bundle. Path is also relative
     // to the output path
     filename: 'assets/scripts/bundle.js',
+    assetModuleFilename: 'assets/images/[name][ext]'
   },
   module: {
     // Array of rules that tells Webpack how the modules (output)
@@ -96,31 +92,9 @@ module.exports = {
       },
       {
         // Adds support to load images in your CSS rules. It looks for
-        // .png, .jpg, .jpeg and .gif
+        // .png, .jpg, .jpeg and .gif. Filename is specified in output.
         test: /\.(png|jpe?g|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              // The image will be named with the original name and
-              // extension
-              name: '[name].[ext]',
-
-              // Indicates where the images are stored and will use
-              // this path when generating the CSS files.
-              // Example, in main.scss I have
-              // url('../../public/assets/images/venice-italy.jpg')
-              // and when generating the CSS file, it will be outputted
-              // as url(../images/venice-italy.jpg), which is relative
-              // to /styles/main.css
-              publicPath: '../images',
-
-              // When this option is 'true', the loader will emit the
-              // image to output.path
-              emitFile: false,
-            },
-          },
-        ],
+        type: 'asset/resource',
       },
     ],
   },
