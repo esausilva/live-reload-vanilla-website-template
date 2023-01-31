@@ -9,7 +9,8 @@
     "dev:assets": "webpack --watch",
     "dev:start": "live-server --open=./public/ --host=localhost --watch=./public/",
     "dev": "concurrently 'yarn:dev:*'",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "prepare": "npx crlf --set=LF node_modules/.bin/live-server"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",
